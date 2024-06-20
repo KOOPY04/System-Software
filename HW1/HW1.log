@@ -1,0 +1,24 @@
+***** Section <default> *****
+Stats: size=78  blocks=78  symbols=13  literals=0  relocations=0
+Blocks
+    name        start   size  #ins #dir #sto
+    <default>   00000  0004E    23    6    1
+Symbols
+    name              hex       dec  scope     kind      type      description
+    CONVERT        000039        57  local     relative  code      label
+    CONVERT_WORD   00004A        74  local     relative  data      label
+    END            000033        51  local     relative  code      label
+    EOF            000047        71  local     relative  data      label
+    INDEV          000045        69  local     relative  data      label
+    NINE           000049        73  local     relative  data      label
+    OUTDEV         000046        70  local     relative  data      label
+    READ           00000F        15  local     relative  code      label
+    READ_END       000042        66  local     relative  code      label
+    START          000000         0  local     relative  code      label
+    WRITE          00002D        45  local     relative  code      label
+    X              00004B        75  local     relative  data      label
+    ZERO           000048        72  local     relative  data      label
+Literals
+    label   definition
+Relocations
+    address length flag symbol

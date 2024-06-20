@@ -1,0 +1,36 @@
+00000  072042    START         LDX     INDEV    
+00003  4B2009                  JSUB    READ    
+00006  03203E                  LDA     EOF    
+00009  2B203B                  COMP    EOF    
+0000C  332024                  JEQ     END    
+                  
+0000F  E32033    READ          TD      INDEV    
+00012  33202D                  JEQ     READ_END    
+00015  DB202D                  RD      INDEV    
+00018  2B202D                  COMP    ZERO    
+0001B  3B200F                  JLT     WRITE    
+0001E  2B2028                  COMP    NINE    
+00021  372009                  JGT     WRITE    
+00024  4B2012                  JSUB    CONVERT    
+00027  0F2021                  STA     X    
+0002A  3F2FE2                  J       READ    
+                  
+0002D  132016    WRITE         STX     OUTDEV    
+00030  3F2FDC                  J       READ    
+                  
+00033  132010    END           STX     OUTDEV    
+00036  4F0000                  RSUB        
+                  
+00039  1F200C    CONVERT       SUB     ZERO    
+0003C  1B200B                  ADD     CONVERT_WORD    
+0003F  4F0000                  RSUB        
+                  
+00042  4F0000    READ_END      RSUB        
+                  
+00045  F1        INDEV         BYTE    X'F1'    
+00046  F2        OUTDEV        BYTE    X'F2'    
+00047  24        EOF           BYTE    X'24'    
+00048  30        ZERO          BYTE    X'30'    
+00049  39        NINE          BYTE    X'39'    
+0004A  61        CONVERT_WORD  BYTE    X'61'    
+0004B  000000    X             RESW    1    

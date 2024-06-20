@@ -1,0 +1,49 @@
+case 0:
+					if((state < 2) && (buf[0] == '+'))	/* + */
+					{
+						line->fmt = FMT4;
+						state = 2;
+					}
+					else	if(op != NULL)	/* INSTRUCTION */
+					{
+						strcpy(line->op, op->op);
+						line->code = op->code;
+						state = 3;
+						if(line->fmt != FMT4)
+						{
+							line->fmt = op->fmt & (FMT1 | FMT2 | FMT3);
+						}
+						else if((line->fmt == FMT4) && ((op->fmt & FMT4) == 0)) /* INSTRUCTION is FMT1 or FMT 2*/
+						{	/* ERROR 20210326 added */
+							printf("ERROR at token %s, %s cannot use format 4 \n", buf, buf);
+							ret = LINE_ERROR;
+							state = 7;		/* skip following tokens in the line */
+						}
+					}
+					else	if(state == 0)	/* SYMBOL */
+					{
+						strcpy(line->symbol, buf);
+						state = 1;
+					}
+				case 1:
+					if((state < 2) && (buf[0] == '+'))	/* + */
+					{
+						line->fmt = FMT4;
+						state = 2;
+					}
+					else	if(op != NULL)	/* INSTRUCTION */
+					{
+						strcpy(line->op, op->op);
+						line->code = op->code;
+						state = 3;
+						if(line->fmt != FMT4)
+						{
+							line->fmt = op->fmt & (FMT1 | FMT2 | FMT3);
+						}
+						else if((line->fmt == FMT4) && ((op->fmt & FMT4) == 0)) /* INSTRUCTION is FMT1 or FMT 2*/
+						{	/* ERROR 20210326 added */
+							printf("ERROR at token %s, %s cannot use format 4 \n", buf, buf);
+							ret = LINE_ERROR;
+							state = 7;		/* skip following tokens in the line */
+						}
+					}
